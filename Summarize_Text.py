@@ -70,10 +70,26 @@ class Summarize_Text:
 
         except Exception as err:
             print("Encountered exception. {}".format(err))
-            
-        if result:
-            data = []
-            result = " ".join([entity.text for entity in result])
-                
+                        
         return result
         
+        
+    def entity_to_text(self, entities):
+        result = None
+        if entities:
+            result = " ".join([entity.text for entity in entities])
+            
+        return result
+    
+    
+    def entity_has_persons(self, entities):
+        result = False
+        
+        if entities: 
+            for entity in entities:
+               if entity.category == "Person":
+                    result = True
+                    break
+                
+        return result
+    
